@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Historia Empleados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Empleado</th>
+      <th>Titulo</th>
+      <th>Fecha</th>
+      <th>Log</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @historia_empleados.each do |historia_empleado| %>
+      <tr>
+        <td><%= historia_empleado.empleado %></td>
+        <td><%= historia_empleado.titulo %></td>
+        <td><%= historia_empleado.fecha %></td>
+        <td><%= historia_empleado.log %></td>
+        <td><%= link_to 'Show', historia_empleado %></td>
+        <td><%= link_to 'Edit', edit_historia_empleado_path(historia_empleado) %></td>
+        <td><%= link_to 'Destroy', historia_empleado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Historia empleado', new_historia_empleado_path %>

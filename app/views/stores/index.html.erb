@@ -1,0 +1,31 @@
+<%if current_user.is_admin?%>
+<%=link_to "Registrar tienda nueva", new_store_path,
+"data-role" => "button", "data-inline"=>"true"%>
+<%end%>
+<form>
+    <input id="filterTable-input" data-type="search">
+</form>
+<table data-role="table" id="movie-table" data-filter="true" data-input="#filterTable-input" class="ui-responsive">
+<thead>
+    <tr>
+        <%if current_user.is_admin?%>
+          <th data-priority="1">Dueño</th>
+        <%end%>
+        <th data-priority="2">Nombre de establecimiento</th>
+        <th data-priority="3">Dirección</th>
+        <th data-priority="4">Teléfono</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr>
+          <%if current_user.is_admin?%>
+            <td><%= store.user.nombre %></td>
+          <%end%>
+          <td><%= link_to store.nombre, store %></td>
+          <td><%= store.direccion %></td>
+          <td><%= store.telefono %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

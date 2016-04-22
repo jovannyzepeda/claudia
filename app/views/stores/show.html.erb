@@ -1,0 +1,101 @@
+<h1 class="alert alert-info text-center">
+	<%=@store.nombre%>
+</h1>
+<div class="col-md-12 no_padding">
+	<div class="col-md-4">
+		<h4 class="alert alert-success text-center">
+			Información de la empresa
+		</h4>
+		<ul class="list-group">
+			<%if current_user.is_admin?%>
+				<li class="list-group-item">
+					Dueño de la empresa: <%=@store.user.nombre%>
+				</li>
+				<li class="list-group-item">
+					Correo del dueño: <%=@store.user.email%>
+				</li>
+			<%end%>
+			<li class="list-group-item">
+				Dirección: <%=@store.direccion%>
+			</li>
+			<li class="list-group-item">
+				Teléfono: 
+				<a href="tel:<%=@store.telefono%>">
+					<%=@store.telefono%>
+				</a>
+			</li>
+			<li class="list-group-item">
+				<%=link_to "Generar un reporte", 
+				new_store_historia_tienda_path(@store), "data-role"=>"button",
+				"data-inline"=>"true", "class" => "cienporciento" %>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-8">
+		<h4 class="alert alert-danger text-center">
+			Historial de la tienda
+		</h4>
+		<ul class="list-group sliderlist">
+			<%@store.historia_tienda.limit(10).order("created_at DESC").each do |x|%>
+				<li class="list-group-item">
+					<h5 class="text-center negritas">
+						<b><%=x.titulo%></b>
+						<%if current_user.is_admin? || current_user.id == x.user_id%>
+							<%= link_to([@store,x], method: :delete, 
+								data: { confirm: 
+								'Estas seguro de eliminar el registro?' }, class: "delete")  do %>	
+								<i class="fa fa-times"></i>
+							<%end%>
+						<%end%>
+					</h5>
+					<p><%=x.log%></p>
+					<p class="text_right blue">Fecha: <%=x.fecha%></p>
+					<%if current_user.is_admin? || current_user.id == x.user_id%>
+						<%=link_to "Editar",edit_store_historia_tienda_path(@store,x)%>
+					<%end%>
+				</li>
+			<%end%>
+		</ul>
+	</div>
+</div>
+<div class="col-md-12 no_padding">
+	<div class="col-md-4">
+		<h4 class="alert alert-success text-center">
+			Empleados Registrados
+		</h4>
+		<%= link_to "Registrar empleado", new_store_empleado_path(@store),
+		"data-role" => "button", "data-inline" => "true"%>
+		<ul class="list-group">
+			<%@store.empleado.each do |x|%>
+				<li class="list-group-item">
+					<%=link_to x.nombre, [@store,x]%>	
+				</li>
+			<%end%>
+		</ul>
+	</div>
+	<div class="col-md-8">
+		<h4 class="alert alert-danger text-center">
+			Historial de los usuarios
+		</h4>
+		<ul class="list-group sliderlist">
+			<%@empleados.each do |x|%>
+				<li class="list-group-item">
+					<h5 class="text-center negritas">
+						<b><%=x[0]%></b>
+					</h5>
+					<p>
+						Responsable: <%=x[3]%><br>
+						Reporte: <%=x[1]%>
+					</p>
+					<p class="text_right blue">Fecha: <%=x[2]%></p>
+				</li>
+			<%end%>
+		</ul>
+	</div>
+</div>
+<%if current_user.is_admin?%>
+	<%= link_to 'Editar', edit_store_path(@store), 
+	"data-inline"=>"true" , "data-role"=>"button"%>
+<%end%>
+<%= link_to 'Regresar', stores_path, 
+	"data-inline"=>"true" , "data-role"=>"button"%>

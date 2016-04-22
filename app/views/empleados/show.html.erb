@@ -1,0 +1,68 @@
+<h3 class="alert alert-info text-center">
+  Información del empleado
+</h3>
+
+<%= link_to 'Regresar', @tienda, "data-inline"=>"true",
+"data-role" => "button" %>
+
+<div class="col-md-12">
+  <div class="col-md-4">
+    <%=image_tag @empleado.foto.url(:medium), class: "cien"%>
+  </div>
+  <div class="col-md-8">
+    <ul class="list-group">
+      <li class="list-group-item">
+        Nombre del empleado: 
+        <%= @empleado.nombre %>
+      </li>
+      <li class="list-group-item">
+        Tienda donde labora: 
+        <%= @empleado.store.nombre %>
+      </li>
+      <li class="list-group-item">
+        Direción: 
+        <%= @empleado.direccion %>
+      </li>
+      <li class="list-group-item">
+        Teléfono: 
+        <%= @empleado.telefono %>
+      </li>
+      <li class="list-group-item">
+        Puesto que desempeña: 
+        <%= @empleado.puesto %>
+      </li>
+      <li class="list-group-item">
+        Fecha de nacimiento: 
+        <%= @empleado.nacimiento %>
+      </li>
+    </ul>
+  </div>
+  <%=link_to "Editar Información de empleado", 
+    edit_store_empleado_path(@tienda,@empleado), "data-role" => "button",
+    class: "aler alert-danger", "data-inline"=> "true"%>
+</div>
+<div class="col-md-12">
+  <h4 class="alert alert-danger text-center">Historial del empleado</h4>
+  <%=link_to "Registrar un reporte" ,new_store_empleado_historia_empleado_path(@tienda,@empleado), "data-role" => "button", "data-inline" => "true"%>
+  <ul class="list-group sliderlist">
+      <%@empleado.historia_empleado.limit(100).order("created_at DESC").each do |x|%>
+        <li class="list-group-item">
+          <h5 class="text-center negritas">
+            <b><%=x.titulo%></b>
+            <%if current_user.is_admin? || current_user.id == x.user_id%>
+              <%= link_to([@tienda,@empleado,x], method: :delete, 
+                data: { confirm: 
+                'Estas seguro de eliminar el registro?' }, class: "delete")  do %>  
+                <i class="fa fa-times"></i>
+              <%end%>
+            <%end%>
+          </h5>
+          <p><%=x.log%></p>
+          <p class="text_right blue">Fecha: <%=x.fecha%></p>
+          <%if current_user.is_admin? || current_user.id == x.user_id%>
+            <%=link_to "Editar", edit_store_empleado_historia_empleado_path(@tienda,@empleado,x)%>
+          <%end%>
+        </li>
+      <%end%>
+    </ul>
+</div>

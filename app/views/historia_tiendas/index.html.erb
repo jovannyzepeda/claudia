@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Historia Tiendas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Store</th>
+      <th>Titulo</th>
+      <th>Fecha</th>
+      <th>Log</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @historia_tiendas.each do |historia_tienda| %>
+      <tr>
+        <td><%= historia_tienda.store %></td>
+        <td><%= historia_tienda.titulo %></td>
+        <td><%= historia_tienda.fecha %></td>
+        <td><%= historia_tienda.log %></td>
+        <td><%= link_to 'Show', historia_tienda %></td>
+        <td><%= link_to 'Edit', edit_historia_tienda_path(historia_tienda) %></td>
+        <td><%= link_to 'Destroy', historia_tienda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Historia tienda', new_historia_tienda_path %>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  	<%if @user.email == @user_actual.email%>
+  		<h1>Estimado Administrador del sistema!</h1>
+  	<%else%>
+    	<h1>Estimado <%= @user.nombre %>!</h1>
+    <%end%>
+    <p>
+    	Se te notifica la creación de un nuevo reporte por parte de 
+    	<%=@user_actual.nombre%><br>
+    	El repote fue realizado dentro de la tienda
+    	<strong><%=@tienda.nombre%></strong> y 
+      el empleado <strong><%=@empleado.nombre%></strong><br>
+    	<%=@elemento.titulo%><br>
+    	Fecha de creación: <%=@elemento.fecha%><br>
+    	Reporte:<%=@elemento.log%>
+    </p>
+  </body>
+</html>

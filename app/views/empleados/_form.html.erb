@@ -1,0 +1,40 @@
+<%= form_for([@tienda,@empleado],:html => {:data => {:ajax => 'false'}}) do |f| %>
+  <% if @empleado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@empleado.errors.count, "error") %> No se ha podido almacenar el usuario por las siguientes razones:</h2>
+
+      <ul>
+      <% @empleado.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :nombre, "Nombre del empleado"%>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :foto, "Fotografía del empleado"%>
+    <%= f.file_field :foto %>
+  </div>
+  <div class="field">
+    <%= f.label :direccion, "Dirección del Empleado" %>
+    <%= f.text_field :direccion %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono, "Celular" %>
+    <%= f.text_field :telefono %>
+  </div>
+  <div class="field">
+    <%= f.label :nacimiento, "Nacimiento"%>
+    <%= f.date_field :nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :puesto , "Puesto"%>
+    <%= f.text_field :puesto %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar", "data-inline"=>"true" , "data-role"=>"button" %>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<%= form_for(@user, :url => { :action => "create" } ) do |f| %>
+  <div class="field">
+    <%= f.label :email, "E-mail" %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  <div class="field doscientos">
+    <%= f.label :tipo, "Privilegio" %><br />
+    <%= f.select :tipo do%>
+      <%= content_tag(:option, "Usuario", value: "1") %>
+      <%= content_tag(:option, "Administrador", value: "2") %>
+    <%end%>
+  </div>
+  <div class="field">
+    <%= f.label :nombre, "Nombre de usuairo" %><br />
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Contraseña" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirma el password"%><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  <div class="actions">
+    <%= f.submit  "Guardar Datos de usuario" ,"data-inline"=>"true"%>
+  </div>
+<% end %>

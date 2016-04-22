@@ -1,0 +1,2 @@
+module HistoriaTiendasHelper
+end

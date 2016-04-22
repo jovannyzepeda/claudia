@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Empleado:</strong>
+  <%= @historia_empleado.empleado %>
+</p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @historia_empleado.titulo %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @historia_empleado.fecha %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @historia_empleado.log %>
+</p>
+
+<%= link_to 'Edit', edit_historia_empleado_path(@historia_empleado) %> |
+<%= link_to 'Back', historia_empleados_path %>

@@ -1,0 +1,44 @@
+<div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <%=link_to "SyDTI Network", root_path, "class"=>"navbar-brand"%>
+            <button type="button" class="navbar-toggle responsive" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-left">
+              <li class=" page-scroll">
+                <%= link_to "Mis tiendas", stores_path%>
+              </li>
+            </ul>
+          <%end%>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class="dropdown page-scroll">
+                <a href="#" class="dropdown-toggle page-scroll" data-toggle="dropdown">
+                  Usuario<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <%if current_user.is_admin?%>
+                    <li>
+                      <%= link_to "Administrar usuarios",admins_path ,"class" => "page-scroll" %>
+                    </li>
+                  <%end%>
+                  <li>
+                    <%= link_to "Cambiar password", edit_user_registration_path,"class" => "page-scroll" %>
+                  </li>
+                  <li>
+                    <%= link_to "Salir", destroy_user_session_path, method: :delete, class: "page-scroll", "data-ajax"=>"false"%>
+                  </li>
+                </ul>
+              </li>
+            <%else%>
+              <li>
+                <%= link_to('Login', new_user_session_path, class: "page-scroll")  %>  
+              </li>
+            <%end%>
+          </ul>
+        </div>
+    </div>
+</div>

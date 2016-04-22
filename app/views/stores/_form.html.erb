@@ -1,0 +1,35 @@
+<%= form_for(@store) do |f| %>
+  <% if @store.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@store.errors.count, "error") %> No se ha podido almacenar el registro por las siguientes razones:</h2>
+
+      <ul>
+      <% @store.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <input data-type="search" id="searchForUser" placeholder="Filtra el listado de usuarios">
+  <div class="field">
+    <%= f.label :user_id, "Dueño de la empresa" %>
+    <%= f.select(:user_id,options_for_select(
+        @users), {:include_blank => "Selecciona el dueño de la empresa"}, {required: 'true', "data-filter"=>"true", "data-input"=>"#searchForUser", id: "select_lider"}) %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre, "Nombre comercial de la tienda" %>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :direccion, "Dirección de la empresa" %>
+    <%= f.text_field :direccion %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono, "Teléfono" %>
+    <%= f.text_field :telefono %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Guardar", "data-inline"=>"true" %>
+  </div>
+<% end %>

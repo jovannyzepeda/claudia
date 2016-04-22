@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @historia_tienda.store %>
+</p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @historia_tienda.titulo %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @historia_tienda.fecha %>
+</p>
+
+<p>
+  <strong>Log:</strong>
+  <%= @historia_tienda.log %>
+</p>
+
+<%= link_to 'Edit', edit_historia_tienda_path(@historia_tienda) %> |
+<%= link_to 'Back', historia_tiendas_path %>

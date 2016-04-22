@@ -1,0 +1,49 @@
+@import "bootstrap";
+.field{
+	margin-bottom:  30px!important;
+}
+.no_padding{
+	padding: 0px!important;
+	margin: 0px!important;
+}
+.text_right{
+	text-align: right;
+}
+.green{
+	color: darkgreen;
+}
+.blue{
+	color: cornflowerblue;
+}
+.negritas{
+	font-weight: 900;
+}
+.sliderlist{
+	max-height: 350px;
+	overflow-y: scroll;
+}
+.cienporciento{
+	width:100%;
+}
+.doscientos{
+	width: 200px!important;
+}
+.delete{
+	float: right;
+    font-size: 20px;
+    color: red!important;
+}
+@media(min-width: 720px){
+	.responsive{
+		display: none!important;
+	}
+}
+@media(max-width: 720px){
+	.responsive{
+		width: inherit!important;
+	}
+}
+
+img.cien{
+	max-width:100%;
+}

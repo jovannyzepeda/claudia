@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+</head>
+<body>
+	<%=render "parcial/nav" %>
+	<div class="col-md-8 col-md-offset-2">
+		<div style="<%="display:none;" if alert.nil? && notice.nil?%>">
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
+		</div>
+		<%= yield %>
+	</div>
+</body>
+</html>
